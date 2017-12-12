@@ -24,8 +24,10 @@ RUN zypper -n install unzip which hostname
 # Download and Extract Elasticsearch
 ADD https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/2.3.3/elasticsearch-2.3.3.zip /opt/
 
-RUN unzip /opt/elasticsearch-2.3.3.zip -d /opt/ && \
-    /opt/elasticsearch-2.3.3/bin/plugin install analysis-icu
+RUN unzip /opt/elasticsearch-2.3.3.zip -d /opt/
+
+# Install the analysis-icu plugin for Elasticsearch
+CMD /opt/elasticsearch-2.3.3/bin/plugin install analysis-icu
 
 #
 # The actual image definition
