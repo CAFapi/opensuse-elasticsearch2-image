@@ -17,14 +17,18 @@
 #
 # Preliminary image that downloads and extracts Elasticsearch
 #
-FROM opensuse:42.3 AS builder
+FROM cafapi/opensuse-jre8:1.2 AS builder
 
+RUN zypper -n install which hostname
 RUN zypper -n install unzip
 
 # Download and Extract Elasticsearch
 ADD https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/2.3.3/elasticsearch-2.3.3.zip /opt/
 
 RUN unzip /opt/elasticsearch-2.3.3.zip -d /opt/
+
+# Install the analysis-icu plugin for Elasticsearch
+RUN /opt/elasticsearch-2.3.3/bin/plugin install analysis-icu
 
 #
 # The actual image definition
@@ -33,14 +37,11 @@ FROM cafapi/opensuse-jre8:1.2
 
 RUN zypper -n install which hostname
 
-COPY --from=builder /opt/elasticsearch-2.3.3/ /opt/elasticsearch/
-
-# Install the analysis-icu plugin for Elasticsearch
-RUN /opt/elasticsearch/bin/plugin install analysis-icu
-
 # Startup Elasticsearch and expose ports
 EXPOSE 9200 9300
-RUN /opt/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true
+CMD /opt/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true
+
+COPY --from=builder /opt/elasticsearch-2.3.3/ /opt/elasticsearch/
 
 # Tag the image
 ARG BUILD_NUMBER
