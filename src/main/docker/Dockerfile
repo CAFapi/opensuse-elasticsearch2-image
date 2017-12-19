@@ -43,7 +43,7 @@ CMD /opt/elasticsearch/scripts/start.sh
 
 COPY --from=builder /opt/elasticsearch-2.3.3/ /opt/elasticsearch/
 
-COPY scripts / /opt/elasticsearch/scripts/
+COPY scripts/ /opt/elasticsearch/scripts/
 RUN chmod +x /opt/elasticsearch/scripts/*
 
 # Tag the image
