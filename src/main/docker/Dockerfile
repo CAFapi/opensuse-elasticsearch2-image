@@ -39,9 +39,12 @@ RUN zypper -n install which hostname
 
 # Startup Elasticsearch and expose ports
 EXPOSE 9200 9300
-CMD /opt/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true
+CMD /opt/elasticsearch/scripts/start.sh
 
 COPY --from=builder /opt/elasticsearch-2.3.3/ /opt/elasticsearch/
+
+COPY scripts/ /opt/elasticsearch/scripts/
+RUN chmod +x /opt/elasticsearch/scripts/*
 
 # Tag the image
 ARG BUILD_NUMBER
