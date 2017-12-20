@@ -30,6 +30,9 @@ RUN unzip /opt/elasticsearch-2.3.3.zip -d /opt/
 # Install the analysis-icu plugin for Elasticsearch
 RUN /opt/elasticsearch-2.3.3/bin/plugin install analysis-icu
 
+# Configure logging
+COPY logging.yml /opt/elasticsearch-2.3.3/config
+
 #
 # The actual image definition
 #
