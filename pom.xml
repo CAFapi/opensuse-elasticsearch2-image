@@ -27,7 +27,7 @@
     <packaging>pom</packaging>
 
     <name>openSUSE Elasticsearch2 image</name>
-    <description>An openSUSE-based image which includes Elasticsearch version 2.3.3.</description>
+    <description>An openSUSE-based image which includes Elasticsearch version 2.4.6.</description>
     <url>https://github.com/CAFapi/opensuse-elasticsearch2-image</url>
 
     <parent>
