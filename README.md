@@ -1,4 +1,4 @@
-# openSUSE and Elasticsearch 2.3.3 image
+# openSUSE and Elasticsearch 2.4.6 image
 
 This project builds on the openSUSE Java image [here](https://github.com/CAFapi/opensuse-jre8-image) to build a pre-configured Elasticsearch Docker image.
 
