@@ -23,15 +23,15 @@ RUN zypper -n install which hostname
 RUN zypper -n install unzip
 
 # Download and Extract Elasticsearch
-ADD https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/2.3.3/elasticsearch-2.3.3.zip /opt/
+ADD https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/2.4.6/elasticsearch-2.4.6.zip /opt/
 
-RUN unzip /opt/elasticsearch-2.3.3.zip -d /opt/
+RUN unzip /opt/elasticsearch-2.4.6.zip -d /opt/
 
 # Install the analysis-icu plugin for Elasticsearch
-RUN /opt/elasticsearch-2.3.3/bin/plugin install analysis-icu
+RUN /opt/elasticsearch-2.4.6/bin/plugin install analysis-icu
 
 # Configure logging
-COPY logging.yml /opt/elasticsearch-2.3.3/config
+COPY logging.yml /opt/elasticsearch-2.4.6/config
 
 #
 # The actual image definition
@@ -44,7 +44,7 @@ RUN zypper -n install which hostname
 EXPOSE 9200 9300
 CMD /opt/elasticsearch/scripts/start.sh
 
-COPY --from=builder /opt/elasticsearch-2.3.3/ /opt/elasticsearch/
+COPY --from=builder /opt/elasticsearch-2.4.6/ /opt/elasticsearch/
 
 COPY scripts/ /opt/elasticsearch/scripts/
 RUN chmod +x /opt/elasticsearch/scripts/*
