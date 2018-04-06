@@ -17,7 +17,7 @@
 #
 # Preliminary image that downloads and extracts Elasticsearch
 #
-FROM cafapi/opensuse-jre8:1.2 AS builder
+FROM cafapi/opensuse-jre8:1 AS builder
 
 RUN zypper -n install which hostname
 RUN zypper -n install unzip
@@ -36,7 +36,7 @@ COPY logging.yml /opt/elasticsearch-2.4.6/config
 #
 # The actual image definition
 #
-FROM cafapi/opensuse-jre8:1.2
+FROM cafapi/opensuse-jre8:1
 
 RUN zypper -n install which hostname
 
